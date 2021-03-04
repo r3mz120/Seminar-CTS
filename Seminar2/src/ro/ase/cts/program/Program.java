@@ -1,6 +1,7 @@
 package ro.ase.cts.program;
 
 import ro.ase.cts.clase.Aplicant;
+import ro.ase.cts.clase.UniversalReader;
 import ro.ase.cts.clase.readers.AngajatReader;
 
 import java.io.FileNotFoundException;
@@ -11,7 +12,7 @@ public class Program {
     public static void main(String[] args) {
         List<Aplicant> listaAplicanti;
         try {
-            listaAplicanti = AngajatReader.readAngajati("Seminar2/angajati.txt");
+            listaAplicanti = UniversalReader.readAplicant(new AngajatReader("Seminar2/angajati.txt"));
             for (Aplicant aplicant : listaAplicanti)
                 System.out.println(aplicant.toString());
         } catch (FileNotFoundException e) {
