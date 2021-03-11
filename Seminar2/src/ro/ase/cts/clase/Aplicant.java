@@ -76,4 +76,6 @@ public abstract class Aplicant {
         this.nr_proiecte = nrProiecte;
         this.denumireProiect = denumireProiect;
     }
+
+    public abstract float getSumaFinantata();
 }
