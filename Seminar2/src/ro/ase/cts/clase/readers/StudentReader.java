@@ -9,30 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class StudentReader extends Reader{
+public class StudentReader extends Reader {
 
     public StudentReader(String fileName) {
         super(fileName);
     }
 
-
-    public  List<Aplicant> readAplicants() throws FileNotFoundException, NumberFormatException {
+    public List<Aplicant> readAplicants() throws FileNotFoundException, NumberFormatException {
         Scanner input = new Scanner(new File(super.fileName));
         input.useDelimiter(",|\n");
         List<Aplicant> studenti = new ArrayList<>();
 
         while (input.hasNext()) {
-            String nume = input.next();
-            String prenume = (input.next());
-            int varsta = Integer.valueOf(input.nextInt());
-            int punctaj = Integer.valueOf(input.nextInt());
-            int nr = Integer.valueOf(input.nextInt());
-            String[] vect = new String[5];
-            for (int i = 0; i < nr; i++)
-                vect[i] = input.next();
-            int an_studii = input.nextInt();
-            String facultate = (input.next());
-            Student s = new Student(nume, prenume, varsta, punctaj, nr, vect, facultate, an_studii);
+            Student s = new Student();
+            super.readAplicant(s, input);
+            s.setAn_studii(input.nextInt());
+            s.setFacultate(input.next());
             studenti.add(s);
         }
         input.close();
