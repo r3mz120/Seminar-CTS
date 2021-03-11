@@ -41,11 +41,11 @@ public class Angajat extends Aplicant {
 
     @Override
     public String toString() {
-        return "Angajat: Nume=" + nume + ", Prenume=" + prenume
-                + ", Varsta=" + varsta + ", Punctaj=" + punctaj + ", Nr_proiecte=" + nr_proiecte + ", DenumireProiect="
-                + Arrays.toString(denumireProiect) + "Ocupatie=" + ocupatie + ", salariu=" + salariu;
+        final StringBuilder sb = new StringBuilder("Angajat:");
+        sb.append(super.toString()).append("ocupatie= ").append(ocupatie).append('\'');
+        sb.append(", salariu=").append(salariu);
+        return sb.toString();
     }
-
 
     public static float getFinantare() {
         return sumaFinantata;
