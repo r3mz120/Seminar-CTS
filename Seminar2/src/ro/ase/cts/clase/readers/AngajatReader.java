@@ -16,18 +16,18 @@ public class AngajatReader extends Reader {
     }
 
     public List<Aplicant> readAplicants() throws FileNotFoundException {
-        Scanner input2 = new Scanner(new File(super.fileName));
-        input2.useDelimiter(",");
+        Scanner input = new Scanner(new File(super.fileName));
+        input.useDelimiter(",");
         List<Aplicant> angajati = new ArrayList<>();
 
-        while (input2.hasNext()) {
+        while (input.hasNext()) {
             Angajat a = new Angajat();
-            super.readAplicant(a, input2);
-            a.setSalariu(input2.nextInt());
-            a.setOcupatie(input2.next());
+            super.readAplicant(a, input);
+            a.setSalariu(input.nextInt());
+            a.setOcupatie(input.next());
             angajati.add(a);
         }
-        input2.close();
+        input.close();
         return angajati;
     }
 

@@ -16,19 +16,19 @@ public class ElevReader extends Reader {
     }
 
     public List<Aplicant> readAplicants() throws FileNotFoundException {
-        Scanner input2 = new Scanner(new File(super.fileName));
-        input2.useDelimiter(",|\n");
+        Scanner input = new Scanner(new File(super.fileName));
+        input.useDelimiter(",|\n");
         List<Aplicant> elevi = new ArrayList<>();
 
-        while (input2.hasNext()) {
+        while (input.hasNext()) {
             Elev e = new Elev();
-            super.readAplicant(e, input2);
-            e.setClasa(input2.nextInt());
-            e.setTutore(input2.next());
+            super.readAplicant(e, input);
+            e.setClasa(input.nextInt());
+            e.setTutore(input.next());
             elevi.add(e);
         }
 
-        input2.close();
+        input.close();
         return elevi;
     }
 }
