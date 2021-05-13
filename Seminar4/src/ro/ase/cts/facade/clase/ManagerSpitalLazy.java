@@ -7,7 +7,7 @@ public class ManagerSpitalLazy {
 
     private static ManagerSpitalLazy manager = null;
 
-    public ManagerSpitalLazy(String nume, int varsta, int marca) {
+    private ManagerSpitalLazy(String nume, int varsta, int marca) {
         this.nume = nume;
         this.varsta = varsta;
         this.marca = marca;
