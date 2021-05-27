@@ -1,12 +1,15 @@
 package clase.tests;
 
 import clase.Grupa;
+import clase.Student;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class TestGrupa {
+
 
     @Test
     public void testConstructorRight() {
@@ -47,4 +50,63 @@ public class TestGrupa {
         Grupa grupa = new Grupa(1076);
         assertNotNull(grupa.getStudenti());
     }
+
+    @Test
+    public void testPromovabilitateRight() {
+        Grupa grupa = new Grupa(1076);
+        for (int i = 0; i < 5; i++) {
+            Student student = new Student("ion");
+            student.adaugaNota(10);
+            student.adaugaNota(9);
+            student.adaugaNota(8);
+            grupa.adaugaStudent(student);
+        }
+        for (int i = 0; i < 7; i++) {
+            Student student = new Student("gigel");
+            student.adaugaNota(2);
+            student.adaugaNota(3);
+            student.adaugaNota(4);
+            grupa.adaugaStudent(student);
+        }
+
+        assertEquals(0.41, grupa.getPromovabilitate(), 0.05);
+    }
+
+    @Test
+    public void testPromovabilitateBoundaryInf() {
+        Grupa grupa = new Grupa(1076);
+        for (int i = 0; i < 7; i++) {
+            Student student = new Student("gigel");
+            student.adaugaNota(3);
+            student.adaugaNota(2);
+            student.adaugaNota(6);
+            student.adaugaNota(4);
+            student.adaugaNota(8);
+            grupa.adaugaStudent(student);
+        }
+        assertEquals(0, grupa.getPromovabilitate(), 0.01);
+    }
+
+    @Test
+    public void testPromovabilitateBoundarySup() {
+        Grupa grupa = new Grupa(1076);
+        for (int i = 0; i < 7; i++) {
+            Student student = new Student("gigel");
+            student.adaugaNota(7);
+            student.adaugaNota(8);
+            student.adaugaNota(6);
+            student.adaugaNota(9);
+            student.adaugaNota(8);
+            grupa.adaugaStudent(student);
+        }
+        assertEquals(1, grupa.getPromovabilitate(), 0.01);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testPromovabilitateCross() {
+        Grupa grupa = new Grupa(1076);
+        grupa.getPromovabilitate();
+    }
+
+
 }

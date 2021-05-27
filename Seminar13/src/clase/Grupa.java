@@ -37,13 +37,17 @@ public class Grupa {
     }
 
     public float getPromovabilitate() {
-        int nrRestantieri = 0;
-        for (IStudent student : studenti) {
-            if (student.areRestante()) {
-                nrRestantieri++;
+        if (studenti.size() == 0) {
+            throw new IllegalArgumentException();
+        } else {
+            int nrRestantieri = 0;
+            for (IStudent student : studenti) {
+                if (student.areRestante()) {
+                    nrRestantieri++;
+                }
             }
+            return 1 - nrRestantieri / (float) studenti.size();
         }
-        return studenti.size() / nrRestantieri;
     }
 
     public int getNrGrupa() {
