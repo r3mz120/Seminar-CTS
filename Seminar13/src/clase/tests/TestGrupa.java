@@ -2,8 +2,12 @@ package clase.tests;
 
 import clase.Grupa;
 import clase.Student;
+import clase.tests.categorii.TesteGetPromovabilitate;
+import clase.tests.categorii.TesteNormale;
+import clase.tests.categorii.TesteUrgente;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -12,6 +16,7 @@ public class TestGrupa {
 
 
     @Test
+    @Category(TesteUrgente.class)
     public void testConstructorRight() {
         Grupa grupa = new Grupa(1076);
         assertEquals(1076, grupa.getNrGrupa());
@@ -19,6 +24,7 @@ public class TestGrupa {
     }
 
     @Test
+    @Category(TesteNormale.class)
     public void testConstructorBoundaryInf() {
         Grupa grupa = new Grupa(1000);
         assertEquals(1000, grupa.getNrGrupa());
@@ -46,12 +52,14 @@ public class TestGrupa {
     }
 
     @Test
+    @Category(TesteNormale.class)
     public void testConstructorLungime() {
         Grupa grupa = new Grupa(1076);
         assertNotNull(grupa.getStudenti());
     }
 
     @Test
+    @Category(TesteGetPromovabilitate.class)
     public void testPromovabilitateRight() {
         Grupa grupa = new Grupa(1076);
         for (int i = 0; i < 5; i++) {
@@ -73,6 +81,7 @@ public class TestGrupa {
     }
 
     @Test
+    @Category({TesteGetPromovabilitate.class, TesteUrgente.class})
     public void testPromovabilitateBoundaryInf() {
         Grupa grupa = new Grupa(1076);
         for (int i = 0; i < 7; i++) {
@@ -88,6 +97,7 @@ public class TestGrupa {
     }
 
     @Test
+    @Category(TesteGetPromovabilitate.class)
     public void testPromovabilitateBoundarySup() {
         Grupa grupa = new Grupa(1076);
         for (int i = 0; i < 7; i++) {
@@ -103,6 +113,7 @@ public class TestGrupa {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    @Category(TesteGetPromovabilitate.class)
     public void testPromovabilitateCross() {
         Grupa grupa = new Grupa(1076);
         grupa.getPromovabilitate();

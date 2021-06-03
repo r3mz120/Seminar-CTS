@@ -2,8 +2,10 @@ package clase.tests;
 
 import clase.Grupa;
 import clase.Student;
+import clase.tests.categorii.TesteGetPromovabilitate;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class TestGrupaCuSetUp {
     Grupa grupa;
@@ -26,6 +28,7 @@ public class TestGrupaCuSetUp {
     }
 
     @Test(timeout = 500)
+    @Category(TesteGetPromovabilitate.class)
     public void testPromovabilitatePerf() {
 
         grupa.getPromovabilitate();
